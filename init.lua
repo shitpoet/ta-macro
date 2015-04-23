@@ -23,7 +23,7 @@ function M.replay()
   --ui.statusbar_text = 'replay macro'
   events.emit(events.KEYPRESS, 27, nil, nil, nil, nil)
   for k,cmd in pairs(macro) do
-    cmd[1](unpack(cmd[2]))
+    cmd[1](table.unpack(cmd[2]))
   end
 end
 
