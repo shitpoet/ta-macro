@@ -34,7 +34,7 @@ end
 --end
 
 events.connect(events.KEYPRESS, function(code, shift, control, alt, meta)
-  --print('MACRO - KEYPRESS')
+  --print('MACRO - KEYPRESS ', code)
   if recording_macro then
     table.insert(macro, {events.emit, {events.KEYPRESS, code, shift, control, alt, meta}})
   end  
@@ -67,7 +67,7 @@ events.connect(events.CHAR_ADDED, function(byte)
     table.insert(macro, {buffer.add_text, {string.char(byte)}})
   end
 end) 
-  
+    
 -- assign navigation keys to commands for proper recording
 keys.left = buffer.char_left
 keys.left = buffer.char_left
@@ -90,5 +90,6 @@ keys['\b'] = buffer.delete_back
 keys['c\b'] = buffer.del_word_left
 keys.del = buffer.clear
 keys.cdel = buffer.del_word_right
+keys['\t'] = buffer.tab
 
 return M
