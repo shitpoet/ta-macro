@@ -12,7 +12,7 @@ function M.record()
   ui.statusbar_text = 'recording macro'
 end
 
-function M.finish() 
+function M.finish()
   if recording_macro then
     recording_macro = false
     ui.statusbar_text = 'macro recorded'
@@ -37,7 +37,7 @@ events.connect(events.KEYPRESS, function(code, shift, control, alt, meta)
   --print('MACRO - KEYPRESS ', code)
   if recording_macro then
     table.insert(macro, {events.emit, {events.KEYPRESS, code, shift, control, alt, meta}})
-  end  
+  end
 end, 1)
 
 -- special case for navigation keys needed
@@ -49,15 +49,15 @@ end, 1)
 --  if recording_macro then
 --    sym = keys.KEYSYMS[code]
 --    if sym == 'left' then
---      table.insert(macro, {buffer.char_left, {}}) 
+--      table.insert(macro, {buffer.char_left, {}})
 --    elseif sym == 'right' then
---      table.insert(macro, {buffer.char_right, {}})     
+--      table.insert(macro, {buffer.char_right, {}})
 --    elseif sym == 'up' then
---      table.insert(macro, {buffer.line_up, {}})     
---    elseif sym == 'down' then   
---      table.insert(macro, {buffer.line_down, {}})         
---    end  
---  end  
+--      table.insert(macro, {buffer.line_up, {}})
+--    elseif sym == 'down' then
+--      table.insert(macro, {buffer.line_down, {}})
+--    end
+--  end
 --end)
 
 -- record chars
@@ -66,10 +66,9 @@ events.connect(events.CHAR_ADDED, function(byte)
   if recording_macro then
     table.insert(macro, {buffer.add_text, {string.char(byte)}})
   end
-end) 
-    
+end)
+
 -- assign navigation keys to commands for proper recording
-keys.left = buffer.char_left
 keys.left = buffer.char_left
 keys.sleft = buffer.char_left_extend
 keys.cleft = buffer.word_left
@@ -78,8 +77,8 @@ keys.right = buffer.char_right
 keys.sright = buffer.char_right_extend
 keys.cright = buffer.word_right
 keys.csright = buffer.word_right_extend
-keys.up = buffer.line_up  
-keys.sup = buffer.line_up_extend  
+keys.up = buffer.line_up
+keys.sup = buffer.line_up_extend
 keys.down = buffer.line_down
 keys.sdown = buffer.line_down_extend
 keys.home = buffer.home
